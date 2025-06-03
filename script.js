@@ -1,76 +1,29 @@
-let products = [];
-let cart = [];
-
-function addProduct() {
-  const name = document.getElementById('name').value;
-  const price = parseFloat(document.getElementById('price').value);
-
-  if (!name || isNaN(price)) {
-    alert("Please enter valid product name and price.");
-    return;
-  }
-
-  const product = { id: Date.now(), name, price };
-  products.push(product);
-  document.getElementById('name').value = '';
-  document.getElementById('price').value = '';
-  renderProducts();
-  renderProductList();
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
-function removeProduct(id) {
-  products = products.filter(p => p.id !== id);
-  renderProducts();
-  renderProductList();
+input {
+  margin: 5px;
+  padding: 5px;
 }
 
-function renderProductList() {
-  const list = document.getElementById('product-list');
-  list.innerHTML = '';
-  products.forEach(p => {
-    const li = document.createElement('li');
-    li.innerHTML = `${p.name} - $${p.price.toFixed(2)} 
-      <button onclick="removeProduct(${p.id})">Remove</button>`;
-    list.appendChild(li);
-  });
+button {
+  padding: 5px 10px;
+  margin-left: 5px;
 }
 
-function renderProducts() {
-  const container = document.getElementById('products');
-  container.innerHTML = '';
-  products.forEach(p => {
-    const div = document.createElement('div');
-    div.className = 'product';
-    div.innerHTML = `
-      <strong>${p.name}</strong> - $${p.price.toFixed(2)}
-      <button onclick="addToCart(${p.id})">Add to Cart</button>
-    `;
-    container.appendChild(div);
-  });
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
 }
 
-function addToCart(id) {
-  const product = products.find(p => p.id === id);
-  cart.push(product);
-  renderCart();
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 
-function renderCart() {
-  const list = document.getElementById('cart-items');
-  list.innerHTML = '';
-  let total = 0;
-  cart.forEach((item, index) => {
-    total += item.price;
-    const li = document.createElement('li');
-    li.className = 'cart-item';
-    li.innerHTML = `${item.name} - $${item.price.toFixed(2)} 
-      <button onclick="removeFromCart(${index})">Remove</button>`;
-    list.appendChild(li);
-  });
-  document.getElementById('total').textContent = total.toFixed(2);
-}
-
-function removeFromCart(index) {
-  cart.splice(index, 1);
-  renderCart();
+th {
+  background-color: #f0f0f0;
 }
