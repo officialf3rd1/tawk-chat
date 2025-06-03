@@ -2,46 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Green Level Bar</title>
+  <title>Green Animated Progress Bar</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f9f9f9;
+    }
+
     .bar-container {
       width: 100%;
-      height: 30px;
-      background-color: #e0e0e0;
-      border-radius: 5px;
+      max-width: 600px;
+      background-color: #ddd;
+      border-radius: 6px;
       overflow: hidden;
-      margin: 20px 0;
+      height: 35px;
+      position: relative;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
     .bar-fill {
       height: 100%;
       background-color: #4CAF50;
+      width: 0;
+      transition: width 1s ease-in-out;
+    }
+
+    .bar-text {
+      position: absolute;
       width: 100%;
-      transition: width 0.5s ease;
+      text-align: center;
+      top: 0;
+      line-height: 35px;
+      font-weight: bold;
+      color: #fff;
+      font-size: 16px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
   </style>
 </head>
 <body>
 
   <h2>Water Level</h2>
+
   <div class="bar-container">
     <div class="bar-fill" id="bar"></div>
+    <div class="bar-text" id="percentText">0%</div>
   </div>
 
   <script>
-    // 🔢 Set the level here (0 to 100)
-    const value = 45; // You can change this number in the code
+    // 🔢 Set your percentage here (0 to 100)
+    const value = 42;  // You only need to change this number
 
     const bar = document.getElementById('bar');
-    bar.style.width = value + '%';
+    const text = document.getElementById('percentText');
 
-    // Optional: color change based on level
-    if (value > 60) {
-      bar.style.backgroundColor = '#4CAF50'; // Green
-    } else if (value > 30) {
-      bar.style.backgroundColor = '#FFC107'; // Yellow
+    // Set the width and update text
+    bar.style.width = value + '%';
+    text.textContent = value + '%';
+
+    // Optional: change bar color based on level
+    if (value < 30) {
+      bar.style.backgroundColor = '#f44336'; // red
+    } else if (value < 60) {
+      bar.style.backgroundColor = '#FFC107'; // yellow
     } else {
-      bar.style.backgroundColor = '#F44336'; // Red
+      bar.style.backgroundColor = '#4CAF50'; // green
     }
   </script>
 
