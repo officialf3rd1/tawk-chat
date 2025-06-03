@@ -3,29 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simple Shop</title>
+  <title>Product Manager</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Simple Shopping Site</h1>
+  <h1>Product Management</h1>
 
-  <section id="product-manager">
-    <h2>Product Manager</h2>
+  <section id="form-section">
     <input type="text" id="name" placeholder="Product Name" />
     <input type="number" id="price" placeholder="Price" />
-    <button onclick="addProduct()">Add Product</button>
-    <ul id="product-list"></ul>
+    <button onclick="saveProduct()">Save</button>
+    <input type="hidden" id="editIndex" />
   </section>
 
-  <section id="shop">
-    <h2>Shop</h2>
-    <div id="products"></div>
-  </section>
-
-  <section id="cart">
-    <h2>Cart</h2>
-    <ul id="cart-items"></ul>
-    <strong>Total: $<span id="total">0</span></strong>
+  <section>
+    <h2>Product List</h2>
+    <table id="product-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price ($)</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="product-body"></tbody>
+    </table>
   </section>
 
   <script src="script.js"></script>
