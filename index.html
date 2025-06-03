@@ -2,29 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Green Animated Progress Bar</title>
+  <title>Game Status Bar</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
       padding: 40px;
-      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .game-status {
+      background-color: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .game-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .game-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #333;
     }
 
     .bar-container {
       width: 100%;
-      max-width: 600px;
       background-color: #ddd;
       border-radius: 6px;
       overflow: hidden;
       height: 35px;
       position: relative;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+      margin-top: 10px;
     }
 
     .bar-fill {
       height: 100%;
-      background-color: #4CAF50;
       width: 0;
+      background-color: #4CAF50;
       transition: width 1s ease-in-out;
     }
 
@@ -32,36 +59,36 @@
       position: absolute;
       width: 100%;
       text-align: center;
-      top: 0;
       line-height: 35px;
       font-weight: bold;
       color: #fff;
-      font-size: 16px;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
   </style>
 </head>
 <body>
 
-  <h2>Water Level</h2>
+  <div class="game-status">
+    <img src="https://via.placeholder.com/80" alt="Game Icon" class="game-image">
+    <div class="game-title">Grow a Garden</div>
 
-  <div class="bar-container">
-    <div class="bar-fill" id="bar"></div>
-    <div class="bar-text" id="percentText">0%</div>
+    <div class="bar-container">
+      <div class="bar-fill" id="bar"></div>
+      <div class="bar-text" id="percentText">0%</div>
+    </div>
   </div>
 
   <script>
-    // 🔢 Set your percentage here (0 to 100)
-    const value = 42;  // You only need to change this number
+    // 🔢 Change only this value (0–100)
+    const value = 68;
 
     const bar = document.getElementById('bar');
     const text = document.getElementById('percentText');
 
-    // Set the width and update text
     bar.style.width = value + '%';
     text.textContent = value + '%';
 
-    // Optional: change bar color based on level
+    // Optional: dynamic color based on value
     if (value < 30) {
       bar.style.backgroundColor = '#f44336'; // red
     } else if (value < 60) {
