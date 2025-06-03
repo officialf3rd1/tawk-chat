@@ -2,29 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Grow A Garden</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Green Decreasing Bar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+
+    .bar-container {
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      height: 30px;
+      margin-bottom: 10px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 100%;
+      background-color: #4CAF50;
+      transition: width 0.3s ease;
+    }
+
+    #valueDisplay {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Grow A Garden</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <h2>Welcome to Grow A Garden</h2>
-      <p>We sell plants, seeds, tools, and everything you need to grow your dream garden!</p>
-      <img src="https://via.placeholder.com/600x300?text=Grow+Green" alt="Garden">
-    </section>
-  </main>
+  <h2>Water Level</h2>
 
-  <footer>
-    <p>&copy; 2025 Grow A Garden</p>
-  </footer>
+  <div class="bar-container">
+    <div class="bar-fill" id="bar"></div>
+  </div>
+
+  <div id="valueDisplay">Value: 100%</div>
+
+  <input type="range" min="0" max="100" value="100" id="slider">
+
+  <script>
+    const slider = document.getElementById('slider');
+    const bar = document.getElementById('bar');
+    const valueDisplay = document.getElementById('valueDisplay');
+
+    slider.addEventListener('input', () => {
+      const value = slider.value;
+      bar.style.width = value + '%';
+      valueDisplay.textContent = 'Value: ' + value + '%';
+
+      // Optional: change color based on level
+      if (value > 60) {
+        bar.style.backgroundColor = '#4CAF50'; // green
+      } else if (value > 30) {
+        bar.style.backgroundColor = '#FFC107'; // yellow
+      } else {
+        bar.style.backgroundColor = '#F44336'; // red
+      }
+    });
+  </script>
+
 </body>
 </html>
