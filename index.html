@@ -2,71 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Green Decreasing Bar</title>
+  <title>Green Level Bar</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 30px;
-    }
-
     .bar-container {
       width: 100%;
-      background-color: #ddd;
+      height: 30px;
+      background-color: #e0e0e0;
       border-radius: 5px;
       overflow: hidden;
-      height: 30px;
-      margin-bottom: 10px;
+      margin: 20px 0;
     }
 
     .bar-fill {
       height: 100%;
-      width: 100%;
       background-color: #4CAF50;
-      transition: width 0.3s ease;
-    }
-
-    #valueDisplay {
-      font-size: 18px;
-      margin-top: 10px;
-    }
-
-    input[type="range"] {
       width: 100%;
-      margin-top: 20px;
+      transition: width 0.5s ease;
     }
   </style>
 </head>
 <body>
 
   <h2>Water Level</h2>
-
   <div class="bar-container">
     <div class="bar-fill" id="bar"></div>
   </div>
 
-  <div id="valueDisplay">Value: 100%</div>
-
-  <input type="range" min="0" max="100" value="100" id="slider">
-
   <script>
-    const slider = document.getElementById('slider');
+    // 🔢 Set the level here (0 to 100)
+    const value = 45; // You can change this number in the code
+
     const bar = document.getElementById('bar');
-    const valueDisplay = document.getElementById('valueDisplay');
+    bar.style.width = value + '%';
 
-    slider.addEventListener('input', () => {
-      const value = slider.value;
-      bar.style.width = value + '%';
-      valueDisplay.textContent = 'Value: ' + value + '%';
-
-      // Optional: change color based on level
-      if (value > 60) {
-        bar.style.backgroundColor = '#4CAF50'; // green
-      } else if (value > 30) {
-        bar.style.backgroundColor = '#FFC107'; // yellow
-      } else {
-        bar.style.backgroundColor = '#F44336'; // red
-      }
-    });
+    // Optional: color change based on level
+    if (value > 60) {
+      bar.style.backgroundColor = '#4CAF50'; // Green
+    } else if (value > 30) {
+      bar.style.backgroundColor = '#FFC107'; // Yellow
+    } else {
+      bar.style.backgroundColor = '#F44336'; // Red
+    }
   </script>
 
 </body>
