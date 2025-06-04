@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roblox Cookie Auth</title>
+</head>
+<body>
+  <h2>Enter Roblox .ROBLOSECURITY Cookie</h2>
+  <input type="text" id="rbxCookie" placeholder="Enter .ROBLOSECURITY value" size="60">
+  <button onclick="sendCookie()">Submit</button>
+  <p id="result"></p>
+
+  <script>
+    async function sendCookie() {
+      const cookie = document.getElementById('rbxCookie').value;
+      if (!cookie) {
+        alert("Please enter a .ROBLOSECURITY cookie.");
+        return;
+      }
+
+      const response = await fetch('/auth', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ cookie })
+      });
+
+      const data = await response.json();
+      document.getElementById('result').textContent = data.new_cookie || data.error;
+    }
+  </script>
+</body>
+</html>
